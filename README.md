@@ -34,3 +34,13 @@ Extensions
 
 You can play a :double or a :triple letter.
 You can play a :double or a :triple word.
+
+Outline for West End
+--------------------
+
+- Implement code to make initial tests pass
+- Write tests and implementation code for double and triple word scores. Do so
+  without introducing any new conditional code. This will require injecting the
+  multiplier with a default value.
+- Implement score without any local variables. Hint: Block-scoped variables are
+  fine.
