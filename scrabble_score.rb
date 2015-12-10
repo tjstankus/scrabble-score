@@ -9,21 +9,28 @@ class Scrabble
     10 => %w[Q Z]
   }
 
+  MULTIPLIERS = {
+    single: 1,
+    double: 2,
+    triple: 3
+  }
+
   def self.score(word)
     new(word).score
   end
 
-  attr_reader :word
+  attr_reader :word, :multiplier
 
-  def initialize(word)
+  def initialize(word, multiplier=:single)
     @word = word.to_s.strip.upcase
+    @multiplier = MULTIPLIERS[multiplier]
   end
 
   def score
     points = 0
     word.each_char do |c|
       LETTER_VALUES.each do |value, letters|
-        points += value if letters.include?(c)
+        points += value * multiplier if letters.include?(c)
       end
     end
     points
