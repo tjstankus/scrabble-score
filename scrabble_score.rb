@@ -27,12 +27,12 @@ class Scrabble
   end
 
   def score
-    points = 0
-    word.each_char do |c|
-      LETTER_VALUES.each do |value, letters|
-        points += value * multiplier if letters.include?(c)
+    [].tap do |points|
+      word.each_char do |c|
+        LETTER_VALUES.each do |value, letters|
+          points << value * multiplier if letters.include?(c)
+        end
       end
-    end
-    points
+    end.reduce(0, :+)
   end
 end
