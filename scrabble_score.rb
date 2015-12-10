@@ -9,6 +9,10 @@ class Scrabble
     10 => %w[Q Z]
   }
 
+  def self.score(word)
+    new(word).score
+  end
+
   attr_reader :word
 
   def initialize(word)
