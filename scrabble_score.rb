@@ -26,13 +26,15 @@ class Scrabble
     @multiplier = MULTIPLIERS[multiplier]
   end
 
-  def score
-    points = 0
-    word.each_char do |c|
+  def letter_values
+    @letter_values ||= Hash.new.tap do |h|
       LETTER_VALUES.each do |value, letters|
-        points += value * multiplier if letters.include?(c)
+        letters.each { |letter| h[letter] = value }
       end
     end
-    points
+  end
+
+  def score
+    word.chars.reduce(0) { |memo, c| memo += letter_values[c] * multiplier }
   end
 end
